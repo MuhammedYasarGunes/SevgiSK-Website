@@ -78,8 +78,8 @@ class GaleriÖğesi(models.Model):
     resim = CloudinaryField('sevgisk/image', blank=True, null=True) 
     
     # Videolar için iki farklı seçenek
-    video_dosya = CloudinaryField(resource_type="video", blank=True, null=True)
-    video_url = models.URLField(blank=True, null=True, help_text="YouTube veya başka bir video linki",folder="sevgisk/videolar/")
+    video_dosya = CloudinaryField(resource_type="video", blank=True, null=True,folder="sevgisk/videolar/")
+    video_url = models.URLField(blank=True, null=True, help_text="YouTube veya başka bir video linki")
 
     oluşturma_tarihi = models.DateTimeField(auto_now_add=True)
     sıra = models.IntegerField(default=0)
