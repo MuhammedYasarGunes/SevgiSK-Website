@@ -3,6 +3,9 @@
 {% load cloudinary %}
 
 {% block title %}Ana Sayfa - Sevgi Spor{% endblock %}
+{% block meta_description %}Sevgi Spor Kulübü ana sayfası: güncel haberler, takım gelişmeleri ve kulüp duyuruları.{% endblock %}
+{% block og_title %}Ana Sayfa - Sevgi Spor Kulübü{% endblock %}
+{% block og_description %}Sevgi Spor Kulübü'nün güncel haberleri ve resmi duyuruları.{% endblock %}
 
 {% block content %}
 <main class="main-content">
@@ -60,7 +63,7 @@
 
     <div class="news-card">
         <div class="card-image"
-             style="{% if card_thumb %}background-image: url('{{ card_thumb }}');{% else %}background: linear-gradient(135deg,#00ffcc 0%,#00d9ff 100%);{% endif %} background-size: cover; background-position: center;">
+             style="{% if card_thumb %}background-image: url('{{ card_thumb }}');{% else %}background: linear-gradient(135deg,#1d4ed8 0%,#60a5fa 100%);{% endif %} background-size: cover; background-position: center;">
         </div>
         <div class="card-content">
             <span class="card-date">{{ haber.yayınlama_tarihi|date:"j E Y" }}</span>
@@ -170,7 +173,7 @@
     justify-content: center;
     user-select: none;
 }
-.slider-nav:hover { background: rgba(0,255,204,0.80); color: #1a1a1a; }
+.slider-nav:hover { background: rgba(37,99,235,0.9); color: #fff; }
 .slider-nav.prev  { left:  18px; }
 .slider-nav.next  { right: 18px; }
 
@@ -192,7 +195,7 @@
     border: none;
     padding: 0;
 }
-.dot.active { background: #00ffcc; }
+.dot.active { background: #60a5fa; }
 
 @media (max-width: 768px) {
     .slider-container { height: 340px; }
@@ -235,11 +238,11 @@
     -webkit-overflow-scrolling: touch;
     padding-bottom: 8px;
     scrollbar-width: thin;
-    scrollbar-color: #00ffcc #1a1a1a;
+    scrollbar-color: #1d4ed8 #1a1a1a;
 }
 .newsletter-cards::-webkit-scrollbar       { height: 4px; }
 .newsletter-cards::-webkit-scrollbar-track { background: #1a1a1a; }
-.newsletter-cards::-webkit-scrollbar-thumb { background: #00ffcc; border-radius: 10px; }
+.newsletter-cards::-webkit-scrollbar-thumb { background: #1d4ed8; border-radius: 10px; }
 .news-card {
     flex: 0 0 320px;
     background: #1e1e1e;
@@ -257,7 +260,7 @@
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: #00ffcc;
+    color: #60a5fa;
 }
 .card-content h3 {
     font-size: 17px;
@@ -278,14 +281,14 @@
     gap: 6px;
     background: none;
     border: none;
-    color: #00ffcc;
+    color: #1d4ed8;
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
     padding: 0;
     font-family: inherit;
 }
-.read-more-btn:hover { color: #00d9ff; }
+.read-more-btn:hover { color: #1e3a8a; }
 
 @media (max-width: 768px) {
     .newsletter-cards { flex-direction: column; overflow-x: hidden; padding-bottom: 0; }
@@ -339,7 +342,7 @@
     align-items: center;
     justify-content: center;
 }
-.nd-close:hover { background: #ddff00; color: #1a1a1a; }
+.nd-close:hover { background: #1d4ed8; color: #fff; }
 .nd-header {
     display: grid;
     grid-template-columns: clamp(160px, 30%, 300px) 1fr;
@@ -347,7 +350,7 @@
 }
 .nd-cover {
     min-height: 240px;
-    background: linear-gradient(135deg,#00ffcc 0%,#00d9ff 100%);
+    background: linear-gradient(135deg,#1d4ed8 0%,#60a5fa 100%);
     background-size: cover;
     background-position: center;
 }
@@ -361,10 +364,10 @@
     min-width: 0;
     overflow: hidden;
 }
-.nd-date  { font-size:11px; color:#00ffcc; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.nd-date  { font-size:11px; color:#60a5fa; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
 .nd-title { font-size:26px; font-weight:800; color:#fff; line-height:1.3; margin:0; word-break:break-word; }
 .nd-tags  { display:flex; gap:8px; flex-wrap:wrap; }
-.nd-tag   { padding:4px 12px; border-radius:20px; background:rgba(221,255,0,0.12); border:1px solid rgba(221,255,0,0.35); color:#ddff00; font-size:11px; font-weight:600; }
+.nd-tag   { padding:4px 12px; border-radius:20px; background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.35); color:#1d4ed8; font-size:11px; font-weight:600; }
 .nd-body {
     padding: 32px 40px 36px;
     font-size: 15px;
@@ -376,7 +379,7 @@
 }
 .nd-body::-webkit-scrollbar       { width:6px }
 .nd-body::-webkit-scrollbar-track { background:#f0f0f0 }
-.nd-body::-webkit-scrollbar-thumb { background:#00ffcc; border-radius:10px }
+.nd-body::-webkit-scrollbar-thumb { background:#1d4ed8; border-radius:10px }
 .nd-body p { margin-bottom:16px }
 
 @media (max-width:700px) {
@@ -470,7 +473,7 @@
         var cover = document.getElementById('detailCover');
         cover.style.background = haber.kapak
             ? "url('" + haber.kapak + "') center/cover no-repeat"
-            : 'linear-gradient(135deg,#00ffcc 0%,#00d9ff 100%)';
+            : 'linear-gradient(135deg,#1d4ed8 0%,#60a5fa 100%)';
 
         document.getElementById('detailDate').textContent  = haber.tarih;
         document.getElementById('detailTitle').textContent = haber.baslik;

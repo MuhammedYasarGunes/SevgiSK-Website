@@ -62,6 +62,10 @@ class Haber(models.Model):
         return self.başlık
 
 
+import re
+from django.db import models
+from cloudinary.models import CloudinaryField
+
 class GaleriÖğesi(models.Model):
     KATEGORI_CHOICES = [
         ('maçlar', 'Maçlar'),
@@ -78,7 +82,7 @@ class GaleriÖğesi(models.Model):
     resim = CloudinaryField('sevgisk/image', blank=True, null=True) 
     
     # Videolar için iki farklı seçenek
-    video_dosya = CloudinaryField(resource_type="video", blank=True, null=True,folder="sevgisk/videolar/")
+    video_dosya = CloudinaryField(resource_type="video", blank=True, null=True, folder="sevgisk/videolar/")
     video_url = models.URLField(blank=True, null=True, help_text="YouTube veya başka bir video linki")
 
     oluşturma_tarihi = models.DateTimeField(auto_now_add=True)
@@ -104,6 +108,46 @@ class GaleriÖğesi(models.Model):
         
         # Eğer doluysa içinde youtube geçiyor mu diye bak
         return "youtube.com" in self.video_url or "youtu.be" in self.video_url
+
+    # YENİ EKLENEN 1: YouTube linkinden 11 haneli ID'yi ayıklayan fonksiyon
+    @property
+    def get_youtube_id(self):
+        if not self.video_url:
+            return None
+            
+        url = self.video_url.strip()
+        
+        # Admin panelden direkt 11 haneli kod girildiyse
+        if re.match(r'^[a-zA-Z0-9_-]{11}$', url):
+            return url
+            
+        pattern = r'(?:v=|\/embed\/|youtu\.be\/|\/shorts\/|\/live\/)([a-zA-Z0-9_-]{11})'
+        match = re.search(pattern, url)
+        
+        if match:
+            return match.group(1)
+            
+        return None
+
+    # YENİ EKLENEN 2: Yerel video (dosya) var mı kontrolü
+    @property
+    def has_local_video(self):
+        return bool(self.video_dosya)
+
+    # YENİ EKLENEN 3: Yerel video için Thumbnail oluşturucu (Cloudinary destekli)
+    @property
+    def video_thumbnail(self):
+        # Eğer videoya özel manuel bir resim yüklenmişse onu kullan
+        if self.resim:
+            return self.resim.url
+            
+        # Resim yüklenmemişse, Cloudinary'nin otomatik video kapağı özelliğini kullan (.mp4 yerine .jpg)
+        if self.video_dosya:
+            video_url = self.video_dosya.url
+            if video_url:
+                return video_url.rsplit('.', 1)[0] + '.jpg'
+                
+        return ""
      
 class KurucuUye(models.Model):
     ad_soyad = models.CharField(max_length=120)

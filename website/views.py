@@ -77,7 +77,7 @@ def iletisim(request):
         #     subject=f"Yeni İletişim: {konu}",
         #     message=f"Ad: {ad}\nEmail: {email}\n\n{mesaj}",
         #     from_email=settings.DEFAULT_FROM_EMAIL,
-        #     recipient_list=['info@karabaglarfk.com']
+        #     recipient_list=['info@sevgisk.com']
         # )
         
         context['mesaj_gönderildi'] = True

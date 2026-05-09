@@ -47,12 +47,3 @@ function closeMenu() {
   });
 })();
 
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.navbar') && !e.target.closest('.nav-links')) {
-    menuToggle.classList.remove('active');
-    navLinks.classList.remove('active');
-    navLinks.classList.remove('display'); // ← EKLENDİ
-  }
-});
-

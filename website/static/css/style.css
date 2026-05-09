@@ -14,6 +14,16 @@ html, body {
     background: #f5f5f5;
 }
 
+:root {
+    --brand-blue: #1d4ed8;
+    --brand-blue-dark: #1e3a8a;
+    --brand-blue-soft: #60a5fa;
+    --brand-black: #0b1120;
+    --brand-black-soft: #111827;
+    --brand-white: #f8fafc;
+    --brand-gray: #cbd5e1;
+}
+
 /* ============================================================
    NAVBAR
    ============================================================ */
@@ -177,7 +187,7 @@ html, body {
 .menu-toggle span {
     width: 28px;
     height: 3px;
-    background: #ddff00;
+    background: #ffffff;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgba(221, 255, 0, 0.3);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -1537,4 +1547,57 @@ html, body {
 @keyframes slideInMenu {
     from { opacity: 0; transform: translateX(-20px); }
     to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================================
+   THEME OVERRIDES — MAVI / SIYAH / BEYAZ
+   ============================================================ */
+.navbar,
+.gallery-section,
+.section-header,
+.team-stats,
+.footer {
+    background: linear-gradient(135deg, var(--brand-black) 0%, var(--brand-black-soft) 100%);
+}
+
+.logo img {
+    border-color: var(--brand-blue-soft);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.35);
+}
+
+.logo-text,
+.nav-link.active,
+.stat-number,
+.player-info .number {
+    color: var(--brand-blue-soft);
+}
+
+.nav-link:hover,
+.filter-btn:hover,
+.filter-btn.active,
+.submit-btn,
+.social-btn {
+    background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-soft) 100%);
+    color: var(--brand-white);
+}
+
+.newsletter-section,
+.team-section,
+.matches-section,
+.contact-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.card-date,
+.read-more-btn,
+.gallery-overlay h3,
+.info-box a {
+    color: var(--brand-blue);
+}
+
+.slider-nav:hover,
+.dot.active,
+.newsletter-cards::-webkit-scrollbar-thumb {
+    background: var(--brand-blue);
+    color: var(--brand-white);
 }
