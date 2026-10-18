@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 from cloudinary.models import CloudinaryField
 
@@ -61,10 +63,6 @@ class Haber(models.Model):
     def __str__(self):
         return self.başlık
 
-
-import re
-from django.db import models
-from cloudinary.models import CloudinaryField
 
 class GaleriÖğesi(models.Model):
     KATEGORI_CHOICES = [
